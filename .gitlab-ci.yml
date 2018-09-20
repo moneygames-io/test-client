@@ -1,7 +1,6 @@
 stages:
   - build
   - release
-  - deploy
 
 before_script:
   - docker info
@@ -23,10 +22,3 @@ release:
   stage: release
   script:
     - docker push moneygames/$CI_PROJECT_NAME:$CI_COMMIT_REF_NAME
-    
-deploy:
-  stage: deploy
-  only:
-    - master
-  script:
-    - ssh root@142.93.11.143 'cd main && ./restart'
